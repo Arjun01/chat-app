@@ -9,9 +9,26 @@ const $messages = document.querySelector('#messages')
 
 //Templates
 const messageTemplate = document.querySelector('#message-template').innerHTML;
-
+const senderTemplate = document.querySelector('#sender-template').innerHTML;
 const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML;
+const senderLocationMessageTemplate = document.querySelector('#sender-location-message-template').innerHTML;
+const notificationTemplate = document.querySelector('#notification-template').innerHTML;
 
+socket.on('notification',(notify)=>{
+    console.log(notify);
+    const html = Mustache.render(notificationTemplate,{
+        notify
+    });
+    $messages.insertAdjacentHTML('beforeend',html);
+})
+
+socket.on('senderMessage', (message)=>{
+    console.log(message);
+    const html = Mustache.render(senderTemplate,{
+        message
+    });
+    $messages.insertAdjacentHTML('beforeend',html);
+})
 
 socket.on('message',(message)=>{
     console.log(message);
@@ -24,6 +41,14 @@ socket.on('message',(message)=>{
 socket.on('locationMessage',(url)=>{
     console.log(url);
     const html = Mustache.render(locationMessageTemplate, {
+        url
+    })
+    $messages.insertAdjacentHTML('beforeend',html);
+})
+
+socket.on('senderLocationMessage',(url)=>{
+    console.log(url);
+    const html = Mustache.render(senderLocationMessageTemplate, {
         url
     })
     $messages.insertAdjacentHTML('beforeend',html);

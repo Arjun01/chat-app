@@ -1,35 +1,155 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        <h1>Chat App</h1>
+    <head>
+        <!--Template---->
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <div id="messages">
+    </head>
+    <body>
+        <div class="container py-5 px-4">
+            <header class="text-center">
+                <h1 class="display-4 text-white">Chat App</h1>
+                <p class="text-white lead mb-0">Welcome to our Application!</p>
+                 
+              </header>
+
+            <div class="row rounded-lg overflow-hidden shadow">
+                     <!-- Users box-->
+                    <div class="col-5 px-0">
+                        <div class="bg-white">
+                
+                        <div class="bg-gray px-4 py-2 bg-light">
+                            <p class="h5 mb-0 py-1">Room</p>
+                        </div>
+                
+                        <div class="messages-box">
+                            <div class="list-group rounded-0">
+                            <a class="list-group-item list-group-item-action active text-white rounded-0">
+                                <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <h5 class="mb-0 ">India</h6><small class="small font-weight-bold">25 Dec</small>
+                                    </div>
+                                </div>
+                                
+                            </a>
+                            <a  class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <h6 class="mb-0">Arjun</h6>
+                                    </div>
+                                </div>
+                            </a>
+                            <a  class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media-body ml-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <h6 class="mb-0">Johny</h6>
+                                </div>
+                                </div>
+                            </a>
+                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                      <!-- Chat Box-->
+      <div class="col-7 px-0">
+        <div class="px-4 py-5 chat-box bg-white">
+            <div id="messages">
+    
+            </div>
 
         </div>
 
-        <form id="message-form">
-            <input type="text" name ="message" placeholder="Enter your text message!">
-            <button id="submit" type="submit">Send</button>
-        </form>
-           <button id="send-location">Send Location</button>
+
+        <form id="message-form" class="bg-light">
+            <div class="input-group">
+              <input type="text" name ="message" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+              <div class="input-group-append">
+                <button id="submit" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                <button id="send-location" type="location" class="btn btn-link">  <i class="fa fa-map-marker" aria-hidden="true"></i></button>
+               
+              </div>
+            </div>
+          </form>
+
+
+      </div>
+    </div>
+    <footer style="text-align: center;">
+        <p class="text-white lead mb-0">An elegant chat application.</p>
+        <p class="text-white lead mb-4">By
+          <a href="https://arjun01.github.io" target="_blank" class="text-white">
+            <u>Arjun Sharma</u></a>
+        </p>
+      </footer>
+ </div>
+</body>
+</html>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" ></script>
+
+
+            
 
            <script id="message-template" type="text/html">
-               <div>
-                    <p>{{message}}</p>
+             <!-- Receiver Message-->
+            <div class="media w-50 ml-auto mb-3">
+                <div class="media-body">
+                  <div class="bg-primary rounded py-2 px-3 mb-2">
+                    <p class="text-small mb-0 text-white">{{message}}</p>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
                 </div>
+              </div>
+               
+           </script>
+           
+           <script id="sender-template" type="text/html">
+            <!-- Sender Message-->
+          <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+            <div class="media-body ml-3">
+              <div class="bg-light rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-muted">{{message}}</p>
+              </div>
+              <p class="small text-muted">12:00 PM | Aug 13</p>
+            </div>
+          </div>
            </script>
 
            <script id="location-message-template" type="text/html">
-            <div>
-                 <p><a href="{{url}}" target="_blank">My current location</a></p>
-             </div>
-        </script>
+            <div class="media w-50 ml-auto mb-3">
+                <div class="media-body">
+                  <div class="bg-primary rounded py-2 px-3 mb-2">
+                    <a href="{{url}}" target="_blank"><p class="text-small mb-0 text-white">My location</p></a>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                </div>
+            </div>
+            </script>
+
+            <script id="sender-location-message-template" type="text/html">
+                 <!-- Sender Location-->
+                <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                    <div class="media-body ml-3">
+                      <div class="bg-light rounded py-2 px-3 mb-2">
+                        <a href="{{url}}"  target="_blank"><p class="text-small mb-0 ">User's Location</p></a>
+                      </div>
+                      <p class="small text-muted">12:00 PM | Aug 13</p>
+                    </div>
+                  </div>
+                </script>
+            
+            <script id="notification-template" type="text/html">
+                <div>
+                <p class="small text-muted" style="text-align:center">{{notify}}</p>
+                </div>
+            </script>
 
            <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>   
         <script src="/socket.io/socket.io.js"></script>
         <script src ="/js/chat.js"></script>
-    </body>
-</html>
