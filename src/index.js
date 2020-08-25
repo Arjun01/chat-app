@@ -19,10 +19,15 @@ io.on('connection', (socket)=>{
 
     socket.emit('message', "Wecome!");
 
+    socket.broadcast.emit('message', "A new user has joined!");
+
     socket.on('sendMessage',(message)=>{
         io.emit('message',message);
     })
 
+    socket.on('disconnect', ()=>{
+        io.emit('message', "A user has left!")
+    })
 })
 
 server.listen(port, ()=>{
