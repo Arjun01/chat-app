@@ -25,7 +25,8 @@ socket.on('notification',(notify)=>{
 socket.on('senderMessage', (message)=>{
     console.log(message);
     const html = Mustache.render(senderTemplate,{
-        message
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm A | MMM D')
     });
     $messages.insertAdjacentHTML('beforeend',html);
 })
@@ -33,7 +34,8 @@ socket.on('senderMessage', (message)=>{
 socket.on('message',(message)=>{
     console.log(message);
     const html = Mustache.render(messageTemplate,{
-        message
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm A | MMM D')
     });
     $messages.insertAdjacentHTML('beforeend',html);
 })
@@ -41,7 +43,8 @@ socket.on('message',(message)=>{
 socket.on('locationMessage',(url)=>{
     console.log(url);
     const html = Mustache.render(locationMessageTemplate, {
-        url
+        url:url.url,
+        createdAt: moment(url.createdAt).format('h:mm A | MMM D')
     })
     $messages.insertAdjacentHTML('beforeend',html);
 })
@@ -49,7 +52,8 @@ socket.on('locationMessage',(url)=>{
 socket.on('senderLocationMessage',(url)=>{
     console.log(url);
     const html = Mustache.render(senderLocationMessageTemplate, {
-        url
+        url:url.url,
+        createdAt: moment(url.createdAt).format('h:mm A | MMM D')
     })
     $messages.insertAdjacentHTML('beforeend',html);
 })
